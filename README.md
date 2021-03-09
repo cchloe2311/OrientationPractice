@@ -66,3 +66,13 @@ https://developer.android.com/guide/topics/resources/runtime-changes.html
 +)
 https://www.geeksforgeeks.org/screen-orientations-in-android-with-examples/
 이런 방식으로 어떤 화면에 접근했을 때 그 화면 orientation을 설정할 수 있음
+
++) configChanges를 신중히 사용해야하는 이유
+
+주의: 구성 변경을 직접 처리하면 대체 리소스를 사용하는 것이 훨씬 더 까다로워질 수 있습니다. 시스템이 개발자 대신 자동으로 이를 적용해주지 않기 때문입니다. 이 기법은 구성 변경으로 인한 재시작을 반드시 피해야만 하는 경우 최후의 수단으로서만 고려해야 하며 대부분 애플리케이션에는 권장하지 않습니다.
+
+For example, one of these reasons is when your app is in the background and the OS decides to kill it (with your Activity, of course) to reclaim memory.
+
+When you return to your app, the OS will try to recreate your Activity as you left it, but will fail to do so, because you decided not to bother with it, just used android:configChanges in your Manifest.
+
+If you make sure your app can recover properly from a restart, android:configChanges might not be necessary at all. Because of this, the need to use android:configChanges might indicate some flaw in your app, that may worth to take a look at.
