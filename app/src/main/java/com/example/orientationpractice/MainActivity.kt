@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onSaveInstanceState(outState)
 
         // outState.putInt("N", n)
-        retainerFragment?.setData(countObject)
+        retainerFragment.setData(countObject)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -42,9 +42,7 @@ class MainActivity : AppCompatActivity() {
 //        n = savedInstanceState.getInt("N")
 //        tv_count.text = n.toString()
 
-        retainerFragment?.let {
-            countObject = it.getData()
-        }
+        countObject = retainerFragment.getData()
         tv_count.text = (countObject.n).toString()
     }
 }
