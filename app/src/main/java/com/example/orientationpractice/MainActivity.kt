@@ -11,20 +11,18 @@ class MainActivity : AppCompatActivity() {
 
     // var n = 0
     private var countObject: Count = Count(0)
-    private var retainerFragment: RetainerFragment? = null
+    private lateinit var retainerFragment: RetainerFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        retainerFragment = supportFragmentManager.findFragmentByTag(RetainerFragment::class.java.simpleName) as RetainerFragment?
+        if (supportFragmentManager.findFragmentByTag(RetainerFragment::class.java.simpleName) == null) {
+            retainerFragment = RetainerFragment()
 
-        if (retainerFragment == null) {
-            retainerFragment = RetainerFragment().apply {
-                supportFragmentManager.beginTransaction().add(this, RetainerFragment::class.simpleName).commit()
-                setData(countObject)
-            }
-        }
+            supportFragmentManager.beginTransaction().add(retainerFragment, RetainerFragment::class.simpleName).commit()
+            retainerFragment.setData(countObject)
+        } else retainerFragment = supportFragmentManager.findFragmentByTag(RetainerFragment::class.java.simpleName) as RetainerFragment
     }
 
     fun count(v: View) {
