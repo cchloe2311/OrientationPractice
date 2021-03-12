@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         if (retainerFragment == null) {
             retainerFragment = RetainerFragment().apply {
                 supportFragmentManager.beginTransaction().add(this, RetainerFragment::class.simpleName).commit()
-                this.setData(countObject)
+                setData(countObject)
             }
         }
     }
