@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         retainerFragment = supportFragmentManager.findFragmentByTag(RetainerFragment::class.java.simpleName) as RetainerFragment?
 
         if (retainerFragment == null) {
-            retainerFragment = RetainerFragment().also {
-                supportFragmentManager.beginTransaction().add(it, RetainerFragment::class.simpleName).commit()
-                it.setData(countObject)
+            retainerFragment = RetainerFragment().apply {
+                supportFragmentManager.beginTransaction().add(this, RetainerFragment::class.simpleName).commit()
+                this.setData(countObject)
             }
         }
     }
