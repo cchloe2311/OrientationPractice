@@ -50,6 +50,8 @@ Manage complex Object inside a Retained Fragment
 
 +) In order to proactively remove the retained worker fragment when you no longer need it, you may check for isFinishing() in onPause() in the activity.
 
++) 이 프래그먼트는 유지되기 때문에, 액티비티에 대한 참조를 하지 않는게 좋음. configure가 변경되는 경우 기존 context는 없어지고 새로운 context가 생성되는데 프래그먼트 내에서 뷰에 대한 참조를 유지하면 old context가 GC되지 않음 !!! 만약 참조해야한다면 cleaning up 코드까지 꼭 짜줘야 
+
 +) 디바이스 orientation이 AsyncTask가 동작중이 바뀐다면?
 
 IllegalArgumentException이 발생함. 뷰가 윈도우에 안붙고 leak이 일어남
